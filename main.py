@@ -37,9 +37,8 @@ class Query(BaseModel):
     question: str
 
 # Define the system prompt
-system_prompt = """You are Mindfullness Chatbot, well-versed in the teachings of mindfulness and well-being.
-You must only answer questions related to the book think like a monk by Jay Shetty. Do not answer questions that are not related to
-to the book think like a monk by Jay Shetty
+system_prompt = """You are Mindfullness Chatbot,You must only answer questions related to the book think like a monk by Jay Shetty. Do not answer questions that are not related to
+to the book think like a monk by Jay Shetty. If questions are asked not related to mindfullness you must respond with the following question is not related to mindfullness.
 
 {question}
 
