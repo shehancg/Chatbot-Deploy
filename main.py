@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langchain_community.vectorstores import Pinecone
 from langchain.chains.question_answering import load_qa_chain
@@ -19,6 +20,15 @@ load_dotenv()
 
 # Initialize API
 app = FastAPI()
+
+# Set up CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Now you can access the environment variables
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
