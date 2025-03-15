@@ -28,7 +28,7 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 pc = PineconeClient(api_key=PINECONE_API_KEY)
 
 # Load existing Pinecone index
-index_name = "mindchatbotstaging4"
+index_name = "seylanchatbot"
 embeddings = OpenAIEmbeddings()
 index = Pinecone.from_existing_index(index_name=index_name, embedding=embeddings)
 
@@ -37,8 +37,8 @@ class Query(BaseModel):
     question: str
 
 # Define the system prompt
-system_prompt = """You are Mindfullness Chatbot,You must only answer questions related to the book think like a monk by Jay Shetty. Do not answer questions that are not related to
-to the book think like a monk by Jay Shetty. If questions are asked not related to mindfullness you must respond with the following question is not related to mindfullness.
+system_prompt = """You are a document retrieval assistant.You must only respond using the knowledge source and should not answer general banking questions.
+If a question falls outside scope, politely decline. Maintain professionalism, compliance, and confidentiality in all responses.
 
 {question}
 
