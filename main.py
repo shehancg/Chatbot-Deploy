@@ -38,7 +38,7 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 pc = PineconeClient(api_key=PINECONE_API_KEY)
 
 # Load existing Pinecone index
-index_name = "seylanchatbot"
+index_name = "seylanchatbot2"
 embeddings = OpenAIEmbeddings()
 index = Pinecone.from_existing_index(index_name=index_name, embedding=embeddings)
 
@@ -47,12 +47,13 @@ class Query(BaseModel):
     question: str
 
 # Define the system prompt
-system_prompt = """You are a document retrieval assistant.You must only respond using the knowledge source and should not answer general banking questions.
+system_prompt = """You are a customer assistant chatbot of seylan bank.You must only respond using the knowledge source. Dont provide long paragraph answers.
+You can answer general banking questions but always rely on the knowledge base. You can reply for greetings from the user in shortly.
 If a question falls outside scope, politely decline. Maintain professionalism, compliance, and confidentiality in all responses.
 
 {question}
 
-Relevant information from the book:
+Relevant information from the document:
 {context}
 
 Answer:"""
